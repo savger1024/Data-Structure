@@ -13,6 +13,9 @@ Node* Insert (Node* head, int x);
 void Print(Node* head);
 Node* Insert (Node* head, int data, int n);
 Node* Delete (Node* head, int index);
+Node* Reverse (Node* head);
+void PrintRec(Node* p);
+void PrintReverseRec(Node* p);
 
 int main() {
     cout << "hi\n";
@@ -57,6 +60,13 @@ int main() {
     cin >> pos;
     head3 = Delete(head3, pos);
     Print(head3);
+    //Reverse
+    head3 = Reverse(head3);
+    Print(head3);
+    PrintRec(head3);
+    cout << '\n';
+    PrintReverseRec(head3);
+    cout << '\n';
 
     int end;
     cin >> end;
@@ -119,4 +129,27 @@ Node* Delete (Node* head, int index) {
         delete temp2;
     }
     return head;
+}
+Node* Reverse(Node* head) {
+    Node* current = head;
+    Node* prev = NULL;
+    Node* next = NULL;
+    while (current != NULL) {
+        next = current->link;
+        current->link = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+    return head;
+}
+void PrintRec(Node* p) { //recursion
+    if (p== NULL) return;
+    cout << p->data;
+    PrintRec(p->link);
+}
+void PrintReverseRec(Node* p) { //recursion
+    if (p== NULL) return;
+    PrintRec(p->link);
+    cout << p->data;
 }
