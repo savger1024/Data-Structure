@@ -12,6 +12,7 @@ struct Node {
 Node* Insert (Node* head, int x);
 void Print(Node* head);
 Node* Insert (Node* head, int data, int n);
+Node* Delete (Node* head, int index);
 
 int main() {
     cout << "hi\n";
@@ -45,6 +46,17 @@ int main() {
         Print(head2); 
     }
 
+    //delete from nth position
+    Node* head3 = NULL;
+    head3 = Insert(head3, 4);
+    head3 = Insert(head3, 8);
+    head3 = Insert(head3, 9);
+    Print(head3);
+    int pos;
+    cout << "Enter position: ";
+    cin >> pos;
+    head3 = Delete(head3, pos);
+    Print(head3);
 
     int end;
     cin >> end;
@@ -88,5 +100,23 @@ Node* Insert (Node* head, int data, int n) {
     }
     temp1->link = temp2->link;
     temp2->link = temp1;
+    return head;
+}
+
+Node* Delete (Node* head, int index) {
+    Node* temp1 = head;
+    if(index == 1){
+        head = temp1->link;
+        delete temp1;
+    }
+    else {
+        int i;
+        for(i = 0; i<index-2; i++) {
+            temp1 = temp1-> link;
+        }
+        Node* temp2 = temp1->link;
+        temp1->link = temp2->link;
+        delete temp2;
+    }
     return head;
 }
