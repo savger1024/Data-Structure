@@ -16,6 +16,7 @@ Node* Delete (Node* head, int index);
 Node* Reverse (Node* head);
 void PrintRec(Node* p);
 void PrintReverseRec(Node* p);
+/*Node* ReverseRec(Node* head, Node* p);*/
 
 int main() {
     cout << "hi\n";
@@ -60,13 +61,16 @@ int main() {
     cin >> pos;
     head3 = Delete(head3, pos);
     Print(head3);
-    //Reverse
+    //RecursePrint
     head3 = Reverse(head3);
     Print(head3);
     PrintRec(head3);
     cout << '\n';
     PrintReverseRec(head3);
     cout << '\n';
+   /* //ReverseList (recurse)
+    head3 = ReverseRec(head3, head3);
+    Print(head3);*/
 
     int end;
     cin >> end;
@@ -153,3 +157,13 @@ void PrintReverseRec(Node* p) { //recursion
     PrintRec(p->link);
     cout << p->data;
 }
+/*Node* ReverseRec(Node* head, Node* p) {//recursion
+    if(head->link == NULL) {
+        head = p;
+        return head;        
+    }
+    ReverseRec(head, p->link);
+    Node* q = p->link;
+    q->link = p;
+    p->link = NULL;
+}*/
